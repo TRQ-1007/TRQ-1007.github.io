@@ -34,7 +34,7 @@ function main() {
       '# RSS link',
       'rss: /atom.xml',
       '# Path of title banner image of page top',
-      'banner: "/images/banner.jpg"',
+      'banner: "/images/banner.png"',
       '# Subtitle of page top',
       'subtitle:',
       '# Header links with icon, specified links will appear at the top right corner of the page',
