@@ -10,6 +10,12 @@ function writeFile(filePath, content) {
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
+function appendIfMissing(filePath, marker, appendix) {
+  const base = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : '';
+  if (base.includes(marker)) return;
+  writeFile(filePath, base.replace(/\s*$/, '') + appendix);
+}
+
 function main() {
   const themeRoot = path.join(__dirname, '..', 'node_modules', 'hexo-theme-landscape');
 
@@ -28,7 +34,7 @@ function main() {
       '# RSS link',
       'rss: /atom.xml',
       '# Path of title banner image of page top',
-      'banner: "images/banner.jpg"',
+      'banner: "/images/banner.jpg"',
       '# Subtitle of page top',
       'subtitle:',
       '# Header links with icon, specified links will appear at the top right corner of the page',
@@ -123,38 +129,74 @@ function main() {
     ].join('\n'),
   );
 
-  const sidebarStylPath = path.join(themeRoot, 'source', 'css', '_partial', 'sidebar-aside.styl');
-  const sidebarStylBase = fs.existsSync(sidebarStylPath) ? fs.readFileSync(sidebarStylPath, 'utf8') : '';
-  const injectedMarker = '\n.sidebar-links\n';
-  if (!sidebarStylBase.includes(injectedMarker)) {
-    writeFile(
-      sidebarStylPath,
-      sidebarStylBase.replace(/\s*$/, '') +
-        [
-          '',
-          '.sidebar-links',
-          '  display: flex',
-          '  gap: 10px',
-          '  margin-bottom: 10px',
-          '  a',
-          '    display: inline-flex',
-          '    align-items: center',
-          '    justify-content: center',
-          '    width: 28px',
-          '    height: 28px',
-          '    border: 1px solid color-widget-border',
-          '    border-radius: 6px',
-          '    background: #fff',
-          '    text-decoration: none',
-          '    span',
-          '      font-size: 16px',
-          '',
-          '.sidebar-contact',
-          '  line-height: 1.6',
-          '',
-        ].join('\n'),
-    );
-  }
+  appendIfMissing(
+    path.join(themeRoot, 'source', 'css', '_partial', 'sidebar-aside.styl'),
+    '\n.sidebar-links\n',
+    [
+      '',
+      '.sidebar-links',
+      '  display: flex',
+      '  gap: 10px',
+      '  margin-bottom: 10px',
+      '  a',
+      '    display: inline-flex',
+      '    align-items: center',
+      '    justify-content: center',
+      '    width: 28px',
+      '    height: 28px',
+      '    border: 1px solid color-widget-border',
+      '    border-radius: 6px',
+      '    background: #fff',
+      '    text-decoration: none',
+      '    span',
+      '      font-size: 16px',
+      '',
+      '.sidebar-contact',
+      '  line-height: 1.6',
+      '',
+      '.widget',
+      '  background: #fff',
+      '  box-shadow: none',
+      '  border: 1px solid rgba(0, 0, 0, 0.08)',
+      '  text-shadow: none',
+      '',
+    ].join('\n'),
+  );
+
+  appendIfMissing(
+    path.join(themeRoot, 'source', 'css', '_partial', 'header.styl'),
+    '\n#header-inner\n  position: absolute\n',
+    [
+      '',
+      '#header-inner',
+      '  position: absolute',
+      '  left: 0',
+      '  right: 0',
+      '  bottom: 0',
+      '  background: rgba(255, 255, 255, 0.96)',
+      '  border-top: 1px solid rgba(0, 0, 0, 0.08)',
+      '',
+      '#header-inner .main-nav-link,',
+      '#header-inner .nav-icon',
+      '  color: #444',
+      '  text-shadow: none',
+      '  opacity: 0.9',
+      '',
+      '#header-inner .main-nav-link:hover,',
+      '#header-inner .nav-icon:hover',
+      '  opacity: 1',
+      '  color: #111',
+      '',
+      '#logo,',
+      '#subtitle',
+      '  font-weight: 200',
+      '',
+      '#logo',
+      '  font-size: logo-size * 1.15',
+      '  line-height: logo-size * 1.15',
+      '',
+    ].join('\n'),
+  );
 }
 
 main();
