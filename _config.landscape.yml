@@ -1,0 +1,19 @@
+menu:
+  关于: /
+  博客: /blog/
+  阅读: /reading-material/
+  联系: /contact/
+
+banner: "images/banner.jpg"
+subtitle: "技术博客 · 学习记录"
+
+links:
+  github: https://github.com/Tang-ruiiqan
+  envelope: mailto:261408652@qq.com
+
+sidebar: right
+widgets:
+- recent_posts
+
+recent_posts_limits: 5
+excerpt_link: 阅读全文
