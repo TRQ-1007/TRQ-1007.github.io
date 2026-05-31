@@ -197,6 +197,81 @@ function main() {
       '',
     ].join('\n'),
   );
+
+  appendIfMissing(
+    path.join(themeRoot, 'source', 'css', 'style.styl'),
+    '\nbody\n  background: #fff\n',
+    [
+      '',
+      'body',
+      '  background: #fff',
+      '  color: #111',
+      '',
+      'a',
+      '  color: #111',
+      '  text-decoration: none',
+      '  &:hover',
+      '    text-decoration: underline',
+      '',
+      '#main-nav .main-nav-link',
+      '  text-transform: uppercase',
+      '  font-weight: 600',
+      '  letter-spacing: 1px',
+      '',
+      '.widget-title,',
+      '.article-title,',
+      '.article-entry h1,',
+      '.article-entry h2,',
+      '.article-entry h3',
+      '  font-weight: 700',
+      '  text-transform: uppercase',
+      '',
+      '.article-entry,',
+      '.widget',
+      '  color: #111',
+      '',
+    ].join('\n'),
+  );
+
+  appendIfMissing(
+    path.join(themeRoot, 'source', 'css', 'style.styl'),
+    '\n#wrap\n  background: #fff\n',
+    [
+      '',
+      '#container,',
+      '#wrap',
+      '  background: #fff',
+      '',
+      '.article-date,',
+      '.article-category-link,',
+      '.archive-year,',
+      '.widget-title,',
+      '.article-title',
+      '  color: #000',
+      '  text-shadow: none',
+      '',
+      '.article-entry p,',
+      '.article-entry li',
+      '  text-transform: lowercase',
+      '',
+    ].join('\n'),
+  );
+
+  appendIfMissing(
+    path.join(themeRoot, 'source', 'css', 'style.styl'),
+    '\n#header-inner .main-nav-link,\n#header-inner .nav-icon\n  color: #000\n',
+    [
+      '',
+      '#header-inner .main-nav-link,',
+      '#header-inner .nav-icon',
+      '  color: #000',
+      '',
+      '.article-entry,',
+      '.widget',
+      '  color: #000',
+      '',
+    ].join('\n'),
+  );
 }
 
 main();
