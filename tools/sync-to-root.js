@@ -24,4 +24,9 @@ function copyRecursive(src, dest) {
 
 console.log('同步 site/ → 仓库根目录…');
 copyRecursive(SITE, ROOT);
+if (fs.existsSync(path.join(SITE, '.nojekyll'))) {
+  fs.copyFileSync(path.join(SITE, '.nojekyll'), path.join(ROOT, '.nojekyll'));
+} else {
+  fs.writeFileSync(path.join(ROOT, '.nojekyll'), '');
+}
 console.log('完成。根目录 index.html、admin.html、css/、js/、works/ 已更新。');
