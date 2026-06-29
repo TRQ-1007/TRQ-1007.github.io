@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分而治之-阅读笔记 · 唐睿谦</title>
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/article.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+</head>
+<body class="article-page">
+  <header class="navbar">
+    <a href="../../index.html" class="logo">唐睿谦</a>
+    <ul class="nav-links">
+      <li><a href="../../index.html#home">主页</a></li>
+      <li><a href="../../admin.html">后台</a></li>
+      <li><a href="../../index.html#resume">简历</a></li>
+      <li><a href="../../index.html#portfolio">作品集</a></li>
+    </ul>
+  </header>
+
+  <main class="article-shell">
+    <div class="article-meta-bar">
+      <div class="format-tabs">
+        <span class="format-tab active">HTML</span>
+        <a class="format-tab" href="source.docx" download="分而治之.docx">Word 源文件</a>
+      </div>
+      <a class="back-link" href="../../index.html#portfolio"><i class="fa fa-arrow-left"></i> 返回作品集</a>
+    </div>
+
+    <article class="article-paper">
+      <header class="paper-header">
+        <p class="paper-type">作品 · HTML 版</p>
+        <h1 class="paper-title">分而治之-阅读笔记</h1>
+        <div class="paper-authors">唐睿谦</div>
+        <div class="paper-date">2026-06-13</div>
+        <div class="paper-abstract">
+          <strong>摘要：</strong><span id="paper-abstract-text"></span>
+        </div>
+      </header>
+      <div class="paper-body ltx_page_content">
+        <p><strong>分而治之-阅读笔记</strong></p><p>原文：<strong><a href="https://arxiv.org/abs/2606.01885">arXiv:2606.01885</a></strong></p><p><strong>Divide and Conquer: Reliable Multi-View Evidential Learning for Deepfake Detection</strong></p><ol><li><strong>本文背景：</strong></li></ol><p><strong>当前检测器面对根本问题：泛化能力瓶颈</strong></p><p>具体而言，泛化能力瓶颈源于“语义遮蔽”效应。当下主流检测器是单一骨干网络，而这些网络倾向于学习“语义一致性”，即语义本质，不管输入形式如何变换，检测器都能学习到语义的最本质的特征，所以骨干网络，即特征提取网络，更倾向于学习高幅度的语义特征，也就是更加清楚，更加突出的表征，这是因为检测器在训练过程中，当学习的特征幅度，<strong>也就是图片质量或是清晰度越高，那么训练损失下降越快</strong>（这个我也不知道为啥？）；同时骨干网络学习的特征是伪影与主要语义表征纠缠的表征，所以主导的语义表征会淹没伪影线索。</p><p>这种语义的遮蔽导致网络学习到不可靠的决策边界，导致对于决策产生无根据的过度自信。</p><p><img alt="IMG_256" src="images/img-1.png" /></p><p><strong>该图(a)指出决策边界无法清晰的分开虚假，真实和未见过的特征线索；</strong></p><p><strong>图(b)，也就是本文提出的框架下，三个特征区分明显。</strong></p><ol><li><strong>解决思路</strong></li></ol><p>伪影表征视为语义表征的正交补空间，即伪影与语义特征正交，没有任何相似性。然后构建多视角之间去相关性和互补性。再基于这种解耦，利用登普斯特-沙夫理论（其实只是利用该理论的融合操作）构建“认知冲突”，以及不确定性。</p><p><img alt="IMG_256" src="images/img-2.png" /></p><ol><li><strong>具体实现操作：</strong></li></ol><p>3.1分治</p><p>即提取正交的伪影空间与语义空间。</p><p>首先利用低秩适配的视觉特征模型CLIP（LoRA）提取语义特征：</p><p>                           <img src="images/img-3.png" /></p><p>fs是语义特征，然后提取伪影特征，这里采用的办法是先找出最重要的或者是最本质的语义特征，通过低维流形投影到低维流形曲面上生成低维语义特征：fc</p><p>接着，计算残差以捕捉偏差：</p><p>                               <img src="images/img-4.png" /></p><p>但是该残差里仍有被渗透的语义特征，所以提取纯净的伪影特征，这是因为流星投影器重建能力有限。所以fr和fs呈现零正交化，本文把fr分解为平行分量与正交分量，平行分量为泄露分量：</p><p>                          <img src="images/img-5.png" /></p><p>所以净化后的伪影特征就是fa</p><p>                         <img src="images/img-6.png" /></p><p>3.2征服</p><p>首先之前的“分治”部分，把视图重构为两个视图：伪影视图与语义试图。这两个视图索引为v={1,2},v=1是fv语义视图，v=2是fv伪影视图.</p><p>通过证据头，也就是多头轻量感知机把视图映射为证据：</p><p>                           <img src="images/img-7.png" /></p><p>证据向量ev∈Rk，k是分类，k=2，真假两类。</p><p>基于此，狄利克雷分布参数向量为av=ev+1， Sv=∑kαkv ，是狄利克雷参数</p><p>再推导出主观意见Tv{bv,uv},bv信念质量，uv不确定质量：</p><p>                              <img src="images/img-8.png" /></p><p>生成两个专家：1）T1内容专家；2）T2结构专家</p><p>            <img src="images/img-9.png" /></p><p>其中<img src="images/img-10.png" />(意思是E是语义视角和伪影视角不同维度乘积累加和，用于量化语义视图与伪影视图之间的不一致程度。而<img src="images/img-11.png" />是归一化因子。</p><ol><li><strong>该机制实现原理</strong></li><li>两个专家高置信度达成一致时bk1.bk2占主导地位，同时u1.u2快速递减，从而强化置信度。</li><li>知识互补：当一个视角置信度高（bk1高，u1低），而另一个视角不确定u2低，此时，中间项bk1.u2允许弥补另一个视角缺失，这样的机制防止单视角的失效导致的失灵。</li><li>冲突感知：视角间存在矛盾时，E系数上升，归一化因子抑制信念质量并且提升认知不确定性。</li><li><strong>损失函数</strong></li></ol><p>5.1首先是语义流形损失，因为流形投影利用𝛽Beta-VAE 投影器，所以这一部分的损失定义为：</p><p><img src="images/img-12.png" /></p><p>Lalin:初始语义fs与投影向量fc余弦相似度：</p><p>                        <img src="images/img-13.png" /></p><p>Lkld:最小化标准正态分布与投影的后验分布KL散度，也就是让该后验分布更接近于标准正态分布：</p><p>                          <img src="images/img-14.png" /></p><p><strong>μ 和 σ^2 </strong>分别表示编码器预测输出的均值与方差</p><p>5.2不确定性感知证据流失。</p><p>                 <img src="images/img-15.png" /></p><p>促使网络为真实类别积累证据:</p><p>               <img src="images/img-16.png" /></p><p>该积分可利用 Digamma 函数 ψ​(⋅) 简化为易于处理的形式:</p><p>                          <img src="images/img-17.png" /></p><p>引入了一个 KL 散度正则化项，用于惩罚非目标类别偏离均匀先验分布:</p><p>                   <img src="images/img-18.png" /></p><p><img src="images/img-19.png" />是掩码参数向量，确保真实类别的证据不受惩罚。</p><p>最终证据损失定义为：</p><p>                 <img src="images/img-20.png" /></p><p><img src="images/img-21.png" />是一个退火系数，用于在训练轮次 t 中逐步增加正则化权重。</p><p>总目标函数：</p><p>                                <img src="images/img-22.png" /></p>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      var body = document.querySelector('.paper-body');
+      var abs = document.getElementById('paper-abstract-text');
+      if (body && abs) {
+        var t = body.innerText.replace(/\s+/g, ' ').trim().slice(0, 220);
+        abs.textContent = t + (body.innerText.length > 220 ? '…' : '');
+      }
+    })();
+  </script>
+</body>
+</html>

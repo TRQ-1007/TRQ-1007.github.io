@@ -1,0 +1,8 @@
+{
+  "title": "我的阅读笔记：正交子空间分解：面向可泛化 AI 生成图像检测",
+  "slug": "我的阅读笔记",
+  "desc": "我的阅读笔记：正交子空间分解：面向可泛化 AI 生成图像检测 论文原文：Orthogonal Subspace Decomposition for Generalizable AI-Generated Image Detection 论文的背景： 当下的检测器普遍把伪造检测当做一种类似于猫还是狗的特闲识别的二元分类任务，具体来说：让基于深度神经网络的标准二元分类器预判测试图像在推理过程中是伪造图像…",
+  "date": "2026-06-07",
+  "htmlUrl": "works/我的阅读笔记/index.html",
+  "sourceDocx": "source.docx"
+}

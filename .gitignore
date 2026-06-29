@@ -1,8 +1,18 @@
-.DS_Store
-Thumbs.db
-db.json
-*.log
+# 开发目录（根目录已有发布副本）
+site/input/
+
+# 工具
+tools/node_modules/
+
+# 旧 Hexo 残留（不再使用）
 node_modules/
 public/
-.deploy*/
-_multiconfig.yml
+.deploy_git/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 勿提交 Token
+.env
+tools/.env

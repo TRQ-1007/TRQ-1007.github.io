@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>后台 · 唐睿谦的技术博客</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+</head>
+<body class="admin-page">
+
+  <header class="navbar">
+    <a href="index.html" class="logo">唐睿谦</a>
+    <ul class="nav-links">
+      <li><a href="index.html#home">主页</a></li>
+      <li><a href="admin.html" class="active">后台</a></li>
+      <li><a href="index.html#resume">简历</a></li>
+      <li><a href="index.html#portfolio">作品集</a></li>
+      <li><a href="#" id="contact-trigger">联系方式</a></li>
+    </ul>
+  </header>
+
+  <div class="contact-overlay" id="contact-overlay"></div>
+  <aside class="contact-drawer" id="contact-drawer">
+    <button class="contact-close" id="contact-close" aria-label="关闭">&times;</button>
+    <h3>联系方式</h3>
+    <p class="contact-sub">欢迎通过以下方式与我联系</p>
+    <div class="contact-item">
+      <label>邮箱</label>
+      <a href="mailto:261408652@qq.com">261408652@qq.com</a>
+    </div>
+    <div class="contact-item">
+      <label>GitHub</label>
+      <a href="https://github.com/TRQ-1007" target="_blank" rel="noopener">TRQ-1007</a>
+    </div>
+  </aside>
+
+  <div class="admin-layout">
+    <div class="admin-toolbar">
+      <button id="btn-new">新建</button>
+      <button id="btn-import-word">导入 Word</button>
+      <input type="file" id="word-file-input" accept=".docx" hidden>
+      <button id="btn-insert-image">插入图片</button>
+      <button id="btn-insert-video">插入视频</button>
+      <button id="btn-finish" class="primary">完成</button>
+      <button id="btn-publish" class="primary publish-btn">发布到网站</button>
+      <button id="btn-github-settings" title="GitHub 设置">GitHub 设置</button>
+      <button id="btn-delete" class="danger">删除</button>
+      <span class="toolbar-spacer"></span>
+      <span class="doc-status" id="doc-status">就绪</span>
+    </div>
+
+    <div class="admin-body">
+      <aside class="admin-sidebar">
+        <div class="admin-sidebar-header">已写作品</div>
+        <ul class="admin-post-list" id="post-list"></ul>
+      </aside>
+
+      <div class="admin-editor-wrap">
+        <div class="admin-title-bar">
+          <input type="text" id="post-title" placeholder="请输入作品标题…">
+        </div>
+        <div class="admin-doc-scroll">
+          <div class="admin-doc-page">
+            <div id="editor" class="admin-editor" contenteditable="true" spellcheck="true">
+              <p>在此开始写作…</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- GitHub 设置 -->
+  <div class="modal-overlay" id="github-modal" hidden>
+    <div class="modal-card">
+      <button class="modal-close" id="github-modal-close" aria-label="关闭">&times;</button>
+      <h2>GitHub 发布设置</h2>
+      <p class="modal-desc">填写一次即可。Token 仅保存在本机浏览器，用于自动提交到 GitHub Pages。</p>
+      <div class="modal-field">
+        <label for="gh-token">Personal Access Token</label>
+        <input type="password" id="gh-token" placeholder="github_pat_… 或 ghp_…" autocomplete="off">
+        <p class="field-hint">GitHub → Settings → Developer settings → Personal access tokens，勾选 <strong>repo</strong> 权限。</p>
+      </div>
+      <div class="modal-field">
+        <label for="gh-owner">用户名</label>
+        <input type="text" id="gh-owner" value="TRQ-1007">
+      </div>
+      <div class="modal-field">
+        <label for="gh-repo">仓库名</label>
+        <input type="text" id="gh-repo" value="TRQ-1007.github.io">
+      </div>
+      <div class="modal-field">
+        <label for="gh-branch">分支</label>
+        <input type="text" id="gh-branch" value="main">
+      </div>
+      <div class="modal-field">
+        <label for="gh-prefix">发布路径前缀</label>
+        <select id="gh-prefix">
+          <option value="">根目录（推荐）→ trq-1007.github.io/</option>
+          <option value="site">site 子目录 → trq-1007.github.io/site/</option>
+        </select>
+        <p class="field-hint">根目录：访客直接打开你的域名即主页；子目录：主页地址会多一段 /site/。</p>
+      </div>
+      <div class="modal-actions">
+        <button id="gh-test" class="btn-modal">测试连接</button>
+        <button id="gh-save" class="btn-modal primary">保存设置</button>
+      </div>
+      <p id="gh-test-result" class="test-result"></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.9.0/mammoth.browser.min.js"></script>
+  <script src="js/github-publish.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

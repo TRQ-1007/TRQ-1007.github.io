@@ -1,0 +1,221 @@
+/* arXiv 风格论文 HTML 阅读页 */
+
+body.article-page {
+  background: #fafafa;
+  color: #1a1a1a;
+  overflow-x: hidden;
+  scroll-snap-type: none;
+}
+
+body.article-page .navbar {
+  background: rgba(10, 22, 40, 0.95);
+}
+
+.article-shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 24px) 24px 80px;
+}
+
+.article-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.format-tabs {
+  display: flex;
+  gap: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.format-tab {
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  border-right: 1px solid #ccc;
+  text-decoration: none;
+}
+
+.format-tab:last-child { border-right: none; }
+
+.format-tab.active {
+  background: #147efb;
+  color: #fff;
+}
+
+.format-tab:not(.active):hover {
+  background: #f0f4ff;
+  color: #147efb;
+}
+
+.back-link {
+  font-size: 14px;
+  color: #147efb;
+  text-decoration: none;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+.article-paper {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  padding: 48px 56px 64px;
+}
+
+.paper-header {
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 28px;
+  margin-bottom: 32px;
+}
+
+.paper-type {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.paper-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #111;
+  margin-bottom: 16px;
+  font-family: "Times New Roman", "SimSun", serif;
+}
+
+.paper-authors {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.paper-date {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.paper-abstract {
+  background: #f7f9fc;
+  border-left: 4px solid #147efb;
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #444;
+}
+
+.paper-abstract strong {
+  color: #111;
+}
+
+/* 正文 — 类似 arXiv HTML 排版 */
+.ltx_page_content {
+  font-family: "Times New Roman", "SimSun", "STSong", serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #222;
+}
+
+.ltx_page_content p {
+  margin: 0 0 14px;
+  text-align: justify;
+}
+
+.ltx_page_content h1,
+.ltx_page_content h2,
+.ltx_page_content h3,
+.ltx_page_content h4 {
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  color: #111;
+  margin: 28px 0 12px;
+}
+
+.ltx_page_content h1 { font-size: 24px; }
+.ltx_page_content h2 { font-size: 20px; }
+.ltx_page_content h3 { font-size: 18px; }
+
+.ltx_page_content ul,
+.ltx_page_content ol {
+  margin: 0 0 14px;
+  padding-left: 28px;
+}
+
+.ltx_page_content li { margin-bottom: 6px; }
+
+.ltx_page_content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 15px;
+}
+
+.ltx_page_content th,
+.ltx_page_content td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.ltx_page_content th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+.ltx_page_content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+.ltx_page_content blockquote {
+  border-left: 3px solid #147efb;
+  margin: 16px 0;
+  padding: 8px 16px;
+  color: #555;
+  background: #f9f9f9;
+}
+
+.ltx_page_content pre,
+.ltx_page_content code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+}
+
+.ltx_page_content pre {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+.ltx_page_content a {
+  color: #147efb;
+  word-break: break-all;
+}
+
+.ltx_page_content strong { font-weight: 700; }
+.ltx_page_content em { font-style: italic; }
+
+@media (max-width: 768px) {
+  .article-paper {
+    padding: 28px 20px 40px;
+  }
+
+  .paper-title { font-size: 22px; }
+  .ltx_page_content { font-size: 16px; }
+}

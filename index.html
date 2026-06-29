@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>唐睿谦 · 我的技术博客</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <header class="navbar">
+    <a href="#home" class="logo">唐睿谦</a>
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active" data-section="home">主页</a></li>
+      <li><a href="admin.html" class="nav-link">后台</a></li>
+      <li><a href="#resume" class="nav-link" data-section="resume">简历</a></li>
+      <li><a href="#portfolio" class="nav-link" data-section="portfolio">作品集</a></li>
+      <li><a href="#" class="nav-link" id="contact-trigger">联系方式</a></li>
+    </ul>
+  </header>
+
+  <!-- 联系方式抽屉 -->
+  <div class="contact-overlay" id="contact-overlay"></div>
+  <aside class="contact-drawer" id="contact-drawer">
+    <button class="contact-close" id="contact-close" aria-label="关闭">&times;</button>
+    <h3>联系方式</h3>
+    <p class="contact-sub">欢迎通过以下方式与我联系</p>
+    <div class="contact-item">
+      <label>邮箱</label>
+      <a href="mailto:261408652@qq.com">261408652@qq.com</a>
+    </div>
+    <div class="contact-item">
+      <label>GitHub</label>
+      <a href="https://github.com/TRQ-1007" target="_blank" rel="noopener">TRQ-1007</a>
+    </div>
+  </aside>
+
+  <!-- 主页 -->
+  <section id="home" class="section">
+    <div class="home-inner">
+      <div class="home-text">
+        <h1>唐睿谦</h1>
+        <div class="typed-wrap">
+          我是 <span class="highlight" id="typed-text">计算机视觉爱好者</span><span class="typed-cursor"></span>
+        </div>
+        <p class="home-desc">
+          在校本科生，正在独立开发个人技术博客。这里记录我在计算机视觉、深度学习等领域的学习笔记与实践心得。
+        </p>
+        <div class="home-actions">
+          <a href="#resume" class="btn-accent">查看简历</a>
+          <div class="social-icons">
+            <a href="https://github.com/TRQ-1007" target="_blank" rel="noopener" title="GitHub"><i class="fa fa-github"></i></a>
+            <a href="mailto:261408652@qq.com" title="邮箱"><i class="fa fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="home-visual">
+        <div class="hero-circle">
+          <div class="hero-circuit">
+            <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="30" r="4" fill="#147efb"/>
+              <circle cx="60" cy="10" r="4" fill="#147efb"/>
+              <circle cx="100" cy="30" r="4" fill="#147efb"/>
+              <circle cx="60" cy="50" r="4" fill="#147efb"/>
+              <line x1="20" y1="30" x2="60" y2="10" stroke="#147efb" stroke-width="1.5"/>
+              <line x1="60" y1="10" x2="100" y2="30" stroke="#147efb" stroke-width="1.5"/>
+              <line x1="100" y1="30" x2="60" y2="50" stroke="#147efb" stroke-width="1.5"/>
+              <line x1="60" y1="50" x2="20" y2="30" stroke="#147efb" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="hero-title-big">我的<br>技术博客</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 简历 / 个人经历 -->
+  <section id="resume" class="section">
+    <div class="section-header">
+      <h2>我的<span>经历</span></h2>
+      <p>个人成长与学习轨迹</p>
+    </div>
+    <div class="experience-grid">
+      <div class="exp-card">
+        <div class="exp-num">1</div>
+        <div class="exp-title">在校本科生</div>
+        <div class="exp-desc">正在独立开发，兴趣方向 CV（计算机视觉）</div>
+      </div>
+      <div class="exp-card placeholder">
+        <div class="exp-desc">待发展</div>
+      </div>
+      <div class="exp-card placeholder">
+        <div class="exp-desc">待发展</div>
+      </div>
+      <div class="exp-card placeholder">
+        <div class="exp-desc">待发展</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品集 / 项目 -->
+  <section id="portfolio" class="section">
+    <div class="portfolio-inner">
+      <div class="section-header">
+        <h2>最新<span>作品</span></h2>
+        <p>文章与学习笔记</p>
+      </div>
+      <div class="portfolio-content">
+        <div class="portfolio-info">
+          <div class="portfolio-num" id="portfolio-num">01</div>
+          <h3 id="portfolio-title">加载中…</h3>
+          <p id="portfolio-desc"></p>
+          <div class="portfolio-tags" id="portfolio-tags"></div>
+          <div class="portfolio-divider"></div>
+          <div class="portfolio-links">
+            <a id="portfolio-read" class="read-link" href="#" title="阅读 HTML 版">
+              <i class="fa fa-file-text-o"></i>
+            </a>
+            <a id="portfolio-github" class="github-link hidden" href="#" target="_blank" rel="noopener" title="GitHub">
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+        </div>
+        <div class="portfolio-image">
+          <img id="portfolio-img" src="images/banner.jpg" alt="作品预览">
+        </div>
+      </div>
+      <div class="portfolio-nav">
+        <button id="portfolio-prev" aria-label="上一个">&#8592;</button>
+        <button id="portfolio-next" class="active" aria-label="下一个">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/works-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
