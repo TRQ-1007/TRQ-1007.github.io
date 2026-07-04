@@ -3,138 +3,445 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>唐睿谦 · 我的技术博客</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+  <title>Vibe Coding 产品广场 Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-
-  <!-- 导航栏 -->
-  <header class="navbar">
-    <a href="#home" class="logo">唐睿谦</a>
-    <ul class="nav-links">
-      <li><a href="#home" class="nav-link active" data-section="home">主页</a></li>
-      <li><a href="admin.html" class="nav-link">后台</a></li>
-      <li><a href="#resume" class="nav-link" data-section="resume">简历</a></li>
-      <li><a href="#portfolio" class="nav-link" data-section="portfolio">作品集</a></li>
-      <li><a href="#" class="nav-link" id="contact-trigger">联系方式</a></li>
-    </ul>
-  </header>
-
-  <!-- 联系方式抽屉 -->
-  <div class="contact-overlay" id="contact-overlay"></div>
-  <aside class="contact-drawer" id="contact-drawer">
-    <button class="contact-close" id="contact-close" aria-label="关闭">&times;</button>
-    <h3>联系方式</h3>
-    <p class="contact-sub">欢迎通过以下方式与我联系</p>
-    <div class="contact-item">
-      <label>邮箱</label>
-      <a href="mailto:261408652@qq.com">261408652@qq.com</a>
-    </div>
-    <div class="contact-item">
-      <label>GitHub</label>
-      <a href="https://github.com/TRQ-1007" target="_blank" rel="noopener">TRQ-1007</a>
-    </div>
-  </aside>
-
-  <!-- 主页 -->
-  <section id="home" class="section">
-    <div class="home-inner">
-      <div class="home-text">
-        <h1>唐睿谦</h1>
-        <div class="typed-wrap">
-          我是 <span class="highlight" id="typed-text">计算机视觉爱好者</span><span class="typed-cursor"></span>
+  <div class="noise"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-mark">VC</div>
+        <div>
+          <p class="eyebrow">Competition Demo</p>
+          <h1>Vibe Coding 产品广场</h1>
         </div>
-        <p class="home-desc">
-          在校本科生，正在独立开发个人技术博客。这里记录我在计算机视觉、深度学习等领域的学习笔记与实践心得。
-        </p>
-        <div class="home-actions">
-          <a href="#resume" class="btn-accent">查看简历</a>
-          <div class="social-icons">
-            <a href="https://github.com/TRQ-1007" target="_blank" rel="noopener" title="GitHub"><i class="fa fa-github"></i></a>
-            <a href="mailto:261408652@qq.com" title="邮箱"><i class="fa fa-envelope"></i></a>
+      </div>
+      <nav class="top-tabs">
+        <button class="tab-btn active" data-view="home">首页</button>
+        <button class="tab-btn" data-view="feed">动态</button>
+        <button class="tab-btn" data-view="message">消息</button>
+        <button class="tab-btn" data-view="studio">后台</button>
+        <button class="tab-btn" data-view="profile">个人主页</button>
+      </nav>
+      <div class="top-actions">
+        <div class="signal-pill">热门推荐进行中</div>
+        <button class="ghost-btn" id="autoPlayBtn">一键演示</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="panel">
+          <div class="panel-title-row">
+            <h2>筛选</h2>
+            <span>多标签</span>
           </div>
-        </div>
-      </div>
-      <div class="home-visual">
-        <div class="hero-circle">
-          <div class="hero-circuit">
-            <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="30" r="4" fill="#147efb"/>
-              <circle cx="60" cy="10" r="4" fill="#147efb"/>
-              <circle cx="100" cy="30" r="4" fill="#147efb"/>
-              <circle cx="60" cy="50" r="4" fill="#147efb"/>
-              <line x1="20" y1="30" x2="60" y2="10" stroke="#147efb" stroke-width="1.5"/>
-              <line x1="60" y1="10" x2="100" y2="30" stroke="#147efb" stroke-width="1.5"/>
-              <line x1="100" y1="30" x2="60" y2="50" stroke="#147efb" stroke-width="1.5"/>
-              <line x1="60" y1="50" x2="20" y2="30" stroke="#147efb" stroke-width="1.5"/>
-            </svg>
+          <div class="filter-group">
+            <p class="group-title">用途</p>
+            <div class="chip-list">
+              <button class="chip active">全部</button>
+              <button class="chip">游戏</button>
+              <button class="chip">插件</button>
+              <button class="chip">生活工具</button>
+              <button class="chip">学术</button>
+              <button class="chip">办公</button>
+            </div>
           </div>
-          <div class="hero-title-big">我的<br>技术博客</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 简历 / 个人经历 -->
-  <section id="resume" class="section">
-    <div class="section-header">
-      <h2>我的<span>经历</span></h2>
-      <p>个人成长与学习轨迹</p>
-    </div>
-    <div class="experience-grid">
-      <div class="exp-card">
-        <div class="exp-num">1</div>
-        <div class="exp-title">在校本科生</div>
-        <div class="exp-desc">正在独立开发，兴趣方向 CV（计算机视觉）</div>
-      </div>
-      <div class="exp-card placeholder">
-        <div class="exp-desc">待发展</div>
-      </div>
-      <div class="exp-card placeholder">
-        <div class="exp-desc">待发展</div>
-      </div>
-      <div class="exp-card placeholder">
-        <div class="exp-desc">待发展</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 作品集 / 项目 -->
-  <section id="portfolio" class="section">
-    <div class="portfolio-inner">
-      <div class="section-header">
-        <h2>最新<span>作品</span></h2>
-        <p>文章与学习笔记</p>
-      </div>
-      <div class="portfolio-content">
-        <div class="portfolio-info">
-          <div class="portfolio-num" id="portfolio-num">01</div>
-          <h3 id="portfolio-title">加载中…</h3>
-          <p id="portfolio-desc"></p>
-          <div class="portfolio-tags" id="portfolio-tags"></div>
-          <div class="portfolio-divider"></div>
-          <div class="portfolio-links">
-            <a id="portfolio-read" class="read-link" href="#" title="阅读 HTML 版">
-              <i class="fa fa-file-text-o"></i>
-            </a>
-            <a id="portfolio-github" class="github-link hidden" href="#" target="_blank" rel="noopener" title="GitHub">
-              <i class="fa fa-github"></i>
-            </a>
+          <div class="filter-group">
+            <p class="group-title">语言</p>
+            <div class="chip-list">
+              <button class="chip active">TypeScript</button>
+              <button class="chip">Python</button>
+              <button class="chip">Go</button>
+              <button class="chip">Rust</button>
+              <button class="chip">Java</button>
+            </div>
           </div>
-        </div>
-        <div class="portfolio-image">
-          <img id="portfolio-img" src="images/banner.jpg" alt="作品预览">
-        </div>
-      </div>
-      <div class="portfolio-nav">
-        <button id="portfolio-prev" aria-label="上一个">&#8592;</button>
-        <button id="portfolio-next" class="active" aria-label="下一个">&#8594;</button>
-      </div>
-    </div>
-  </section>
+          <div class="filter-group">
+            <p class="group-title">概念</p>
+            <div class="chip-list">
+              <button class="chip active">AI Agent</button>
+              <button class="chip">自动化</button>
+              <button class="chip">效率</button>
+              <button class="chip">知识管理</button>
+              <button class="chip">沉浸体验</button>
+            </div>
+          </div>
+        </section>
 
-  <script src="js/works-data.js"></script>
-  <script src="js/main.js"></script>
+      </aside>
+
+      <main class="main-stage">
+        <section class="view active" id="view-home">
+          <div class="hero panel">
+            <div>
+              <p class="eyebrow">作品广场</p>
+              <h2>让评委一眼看到你的平台价值</h2>
+              <p class="hero-copy">
+                这个 DEMO 聚焦展示平台最强的三件事：作品发现、AI 生成作品介绍页、以及作品社交传播。
+              </p>
+            </div>
+            <div class="hero-grid">
+              <div class="hero-stat">
+                <span>今日新增作品</span>
+                <strong>128</strong>
+              </div>
+              <div class="hero-stat">
+                <span>活跃作者</span>
+                <strong>3,406</strong>
+              </div>
+              <div class="hero-stat">
+                <span>平均停留时长</span>
+                <strong>11m 42s</strong>
+              </div>
+              <div class="hero-stat accent">
+                <span>转发热度最高</span>
+                <strong>AI Lab Flow</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Trending Showcase</p>
+              <h3>热门作品卡片</h3>
+            </div>
+            <div class="inline-pills">
+              <span class="badge hot">按热门推荐</span>
+              <span class="badge">多标签筛选</span>
+              <span class="badge">支持 AI 预览图</span>
+            </div>
+          </div>
+
+          <div class="card-grid" id="productGrid"></div>
+        </section>
+
+        <section class="view" id="view-feed">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Creator Feed</p>
+              <h3>关注动态</h3>
+            </div>
+            <div class="inline-pills">
+              <span class="badge">类似 B 站动态</span>
+            </div>
+          </div>
+          <div class="feed-stack" id="feedList"></div>
+        </section>
+
+        <section class="view" id="view-message">
+          <div class="message-shell panel">
+            <aside class="message-sidebar">
+              <div class="panel-title-row">
+                <h2>联系人</h2>
+                <span>桌面端形态</span>
+              </div>
+              <div class="contact-list" id="contactList"></div>
+            </aside>
+            <section class="chat-room">
+              <div class="chat-head">
+                <div>
+                  <p class="eyebrow">好友聊天</p>
+                  <h3 id="chatTitle">林深时见鹿</h3>
+                </div>
+                <div class="inline-pills">
+                  <span class="badge">已读回执</span>
+                  <span class="badge">产品卡片分享</span>
+                </div>
+              </div>
+              <div class="chat-messages" id="chatMessages"></div>
+              <div class="composer">
+                <div class="composer-tools">
+                  <button>图片</button>
+                  <button>文件</button>
+                  <button>表情</button>
+                  <button>作品卡片</button>
+                </div>
+                <div class="composer-input">
+                  <input type="text" value="我把这个 AI 学术助手产品卡片发给你，你看看有没有合作空间。" readonly>
+                  <button class="primary-btn">发送</button>
+                </div>
+              </div>
+            </section>
+            <aside class="share-panel">
+              <div class="panel-title-row">
+                <h2>共享卡片</h2>
+                <span>会话上下文</span>
+              </div>
+              <div class="shared-card" id="sharedCard"></div>
+              <div class="shared-meta">
+                <div>
+                  <span>最近共享文件</span>
+                  <strong>实验路线图.pdf</strong>
+                </div>
+                <div>
+                  <span>会话状态</span>
+                  <strong>互为好友 182 天</strong>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="view-studio">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">AI Publishing Pipeline</p>
+              <h3>作品介绍生成主舞台</h3>
+            </div>
+            <div class="inline-pills">
+              <span class="badge hot">比赛展示重点</span>
+              <span class="badge">输入仓库即生成介绍页</span>
+              <span class="badge">可继续二次编辑</span>
+            </div>
+          </div>
+          <div class="studio-grid">
+            <section class="panel studio-left">
+              <div class="section-head compact">
+                <div>
+                  <p class="eyebrow">Creator Studio</p>
+                  <h3>提交产品并生成介绍页</h3>
+                </div>
+              </div>
+              <div class="studio-form">
+                <label>
+                  <span>产品标题</span>
+                  <input type="text" value="AI Lab Flow" readonly>
+                </label>
+                <label>
+                  <span>发布者自定义一句话介绍</span>
+                  <textarea readonly>这是一个帮助研究者把论文阅读、实验记录、代码分析和结果总结串成完整闭环的 AI 学术工作台。</textarea>
+                </label>
+                <label>
+                  <span>GitHub 链接</span>
+                  <input id="repoInput" type="text" value="https://github.com/demo/ai-lab-flow" readonly>
+                </label>
+                <label>
+                  <span>发布内容定义语言框</span>
+                  <textarea readonly></textarea>
+                </label>
+                <label>
+                  <span>预览图定义需求语言框</span>
+                  <textarea readonly></textarea>
+                </label>
+                <label>
+                  <span>介绍页排版要求</span>
+                  <textarea readonly></textarea>
+                </label>
+                <label>
+                  <span>发布内容修改语言框</span>
+                  <textarea readonly></textarea>
+                </label>
+                <div class="publish-box">
+                  <span class="publish-title">发布时间选择</span>
+                  <div class="publish-options">
+                    <label class="publish-option selected">
+                      <input type="radio" name="publishType" checked>
+                      <div>
+                        <strong>直接发布</strong>
+                        <p>生成并确认后立即进入作品广场</p>
+                      </div>
+                    </label>
+                    <label class="publish-option">
+                      <input type="radio" name="publishType">
+                      <div>
+                        <strong>存入草稿箱</strong>
+                        <p>先保存为草稿，后续继续修改内容</p>
+                      </div>
+                    </label>
+                    <label class="publish-option">
+                      <input type="radio" name="publishType">
+                      <div>
+                        <strong>定时发布</strong>
+                        <p>指定时间自动发布到广场与个人主页</p>
+                      </div>
+                    </label>
+                  </div>
+                  <label class="schedule-row">
+                    <span>定时发布时间</span>
+                    <input type="datetime-local" value="2026-07-10T20:00" readonly>
+                  </label>
+                </div>
+                <div class="form-row">
+                  <div class="toggle-box">
+                    <span>发布方式</span>
+                    <strong>先存草稿，再定时发布</strong>
+                  </div>
+                  <div class="toggle-box">
+                    <span>预览图来源</span>
+                    <strong>AI 生成 + 作者可替换</strong>
+                  </div>
+                </div>
+                <button class="primary-btn wide" id="generateBtn">启动 AI 生成流程</button>
+              </div>
+            </section>
+
+            <section class="panel studio-right">
+              <div class="panel-title-row">
+                <h2>分析流水线</h2>
+                <span>沙箱 / API / 图生成</span>
+              </div>
+              <div class="studio-highlight">
+                <div class="highlight-card">
+                  <span>展示重点</span>
+                  <strong>从 GitHub 链接到可评审作品页</strong>
+                </div>
+                <div class="highlight-card">
+                  <span>输出结果</span>
+                  <strong>架构图 + 工作流 + 预览图 + HTML 草稿</strong>
+                </div>
+                <div class="highlight-card">
+                  <span>作者可控</span>
+                  <strong>布局、颜色、顺序、文案均可重调</strong>
+                </div>
+              </div>
+              <div class="pipeline" id="pipeline">
+                <div class="pipeline-step pending">
+                  <span>01</span>
+                  <div>
+                    <strong>校验仓库与授权</strong>
+                    <p>检测 GitHub 仓库是否可访问，必要时请求用户授权。</p>
+                  </div>
+                </div>
+                <div class="pipeline-step pending">
+                  <span>02</span>
+                  <div>
+                    <strong>读取 README 与项目结构</strong>
+                    <p>识别技术栈、目录结构、主要模块与入口。</p>
+                  </div>
+                </div>
+                <div class="pipeline-step pending">
+                  <span>03</span>
+                  <div>
+                    <strong>生成架构图与工作流图</strong>
+                    <p>结合代码和说明形成可浏览的解释图。</p>
+                  </div>
+                </div>
+                <div class="pipeline-step pending">
+                  <span>04</span>
+                  <div>
+                    <strong>生成预览图与 HTML 页面</strong>
+                    <p>先输出草稿，再允许作者调整布局、颜色和模块顺序。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="generated-board" id="generatedBoard">
+                <div class="board-empty">
+                  <h4>等待生成</h4>
+                  <p>点击左侧按钮后，这里会展示架构图、工作流、预览图和介绍页模块。</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-profile">
+          <div class="profile-shell">
+            <section class="panel profile-hero">
+              <div class="profile-cover">
+                <div>
+                  <p class="eyebrow">Personal Homepage</p>
+                  <h3>洛白_Studio</h3>
+                  <p class="hero-copy">主页背景由用户自定义，可展示个人定位、风格、作品气质与对外联系形象。</p>
+                </div>
+                <div class="inline-pills">
+                  <span class="badge">背景可自定义</span>
+                  <span class="badge">公开展示作品</span>
+                </div>
+              </div>
+            </section>
+
+            <div class="profile-grid">
+              <section class="panel">
+                <div class="panel-title-row">
+                  <h2>账号信息</h2>
+                  <span>对外展示</span>
+                </div>
+                <div class="profile-info-list">
+                  <div><span>ID</span><strong>洛白_Studio</strong></div>
+                  <div><span>GitHub</span><strong>github.com/demo/luobai</strong></div>
+                  <div><span>联系方式</span><strong>luobai@demo.com</strong></div>
+                  <div><span>其他联系</span><strong>微信 / 邮箱 / 主页链接</strong></div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-title-row">
+                  <h2>浏览情况</h2>
+                  <span>个人统计</span>
+                </div>
+                <div class="result-stats">
+                  <div>
+                    <span>本周浏览作品</span>
+                    <strong>46</strong>
+                  </div>
+                  <div>
+                    <span>停留时长最高</span>
+                    <strong>AI Lab Flow</strong>
+                  </div>
+                  <div>
+                    <span>交流最多好友</span>
+                    <strong>林深时见鹿</strong>
+                  </div>
+                  <div>
+                    <span>总使用时长</span>
+                    <strong>17h 28m</strong>
+                  </div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-title-row">
+                  <h2>历史记录</h2>
+                  <span>最近浏览</span>
+                </div>
+                <div class="feed-stack">
+                  <article class="feed-product">
+                    <strong>Prompt Forge Plugin</strong>
+                    <p class="feed-copy">浏览 18 分钟，查看了介绍页、评论区与工作流图。</p>
+                  </article>
+                  <article class="feed-product">
+                    <strong>Life Orbit</strong>
+                    <p class="feed-copy">浏览 9 分钟，重点停留在应用案例与产品预览图。</p>
+                  </article>
+                </div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-title-row">
+                  <h2>收藏与点赞</h2>
+                  <span>个人偏好</span>
+                </div>
+                <div class="feed-stack">
+                  <article class="feed-product">
+                    <strong>我的收藏</strong>
+                    <p class="feed-copy">收藏了 12 个作品，偏向 AI Agent、学术、办公协作类产品。</p>
+                  </article>
+                  <article class="feed-product">
+                    <strong>我的点赞</strong>
+                    <p class="feed-copy">点赞了 34 次，最高频标签为 TypeScript、效率、知识管理。</p>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="detail-panel panel">
+        <div class="panel-title-row">
+          <h2>作品详情</h2>
+          <span>点击卡片切换</span>
+        </div>
+        <div id="detailPanel"></div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
 </body>
 </html>
